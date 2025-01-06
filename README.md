@@ -43,7 +43,7 @@
   Select the link to my github account and clone the repo named "Employee_Organization".
   From there you can follow the instruction of the video below to download the dependencies and initiate the application.
 
-  https://drive.google.com/file/d/1EwBekPTnWkd1Lzg0d8go6CQ9pi1HN0OI/view
+  [Instruction Video](https://drive.google.com/file/d/1EwBekPTnWkd1Lzg0d8go6CQ9pi1HN0OI/view)
   
   
 
