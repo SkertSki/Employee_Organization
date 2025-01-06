@@ -126,15 +126,22 @@ const addEmployee = async () => {
             }))
         }
     ]);
+    const manager = `
+    SELECT * FROM employees
+    WHERE role_id = 3
+    AND department_id = $1`;
     const add = `
-    INSERT INTO employees (id, first_name, last_name, role_id, department_id) 
-    VALUES ((SELECT COALESCE(MAX(id), 0) + 1 FROM employees), $1, $2, $3, $4)`;
+    INSERT INTO employees (id, first_name, last_name, role_id, department_id, manager_id) 
+    VALUES ((SELECT COALESCE(MAX(id), 0) + 1 FROM employees), $1, $2, $3, $4, $5)`;
     try {
+        const employeeManager = await pool.query(manager, [answer.addDept.id]);
+        const { id } = employeeManager.rows[0];
         await pool.query(add, [
             answer.addEmployeeFirst,
             answer.addEmployeeLast,
             answer.addRole.id,
-            answer.addDept.id
+            answer.addDept.id,
+            id
         ]);
         console.log(`\n${answer.addEmployeeFirst} ${answer.addEmployeeLast} has been hired\n`);
         viewEmployees();
